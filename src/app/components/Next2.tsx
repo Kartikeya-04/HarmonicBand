@@ -51,9 +51,9 @@ function Next2() {
           readOnly
         >
 
-  {typeof transcript === 'string' && (
+  {/* {typeof transcript === 'string' && (
   <p>{transcript}</p>
-)}
+)} */}
 
   {/* <p>{transcript}</p> */}
 
