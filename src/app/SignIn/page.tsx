@@ -34,7 +34,9 @@ function Page() {
         return;
       }
       setVisible(true);
-
+toast.success("User's Data Is Saved",{
+  position:'top-center',
+})
       // setFirst({UserId:'',UserName:'',Password:'',Email:''})
     } catch (error) {
       console.log(error);
@@ -139,7 +141,7 @@ function Page() {
             </label>
           </div>
           <div>
-            <input type="text" onChange={handleChangePass} required />
+            <input type="password" onChange={handleChangePass} required />
           </div>
           <div>
             <label>
@@ -147,10 +149,9 @@ function Page() {
             </label>
           </div>
           <div>
-            <input type="text" onChange={handleChangeEmail} required />
+            <input type="email" onChange={handleChangeEmail} required />
           </div>
           <div>
-            {/* <button onClick={Submission} >SUBMIT</button> */}
             <button
               onClick={Submission}
               className="inline-flex cursor-pointer items-center gap-1 rounded border border-slate-300 bg-gradient-to-b from-slate-50 to-slate-200 px-4 py-2 font-semibold hover:opacity-90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-2 active:opacity-100 shadow-custom m-4"
@@ -160,9 +161,7 @@ function Page() {
           </div>
           <br />
           <div>
-            {/* <button onClick={handleSignIn} className="bg-blue-500 text-white">
-              Sign in Using Third Party !
-              </button> */}
+         
             <button className="bg-slate-950 text-slate-400 border border-slate-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group" onClick={handleSignIn} >
               <span className="bg-slate-400 shadow-slate-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
               Sign in Using Third Party !
@@ -170,9 +169,7 @@ function Page() {
           </div>
           <br />
         </div>
-        //  <Footer/>
-
-        // </div> 
+  
       )}
     </div>
   );
