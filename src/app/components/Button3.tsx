@@ -7,8 +7,7 @@ import useClipboard from "react-use-clipboard";
 
 export default function MovingBorderDemo() {
 
-  const [textValue, setTextValue] = useState('');
-  const [isCopied, setCopied] = useClipboard(textValue);
+
 
 
 
@@ -18,18 +17,16 @@ export default function MovingBorderDemo() {
     resetTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
-  const handleChange = () => {
-    setTextValue(transcript);
 
-  };
+
   return (
     <div>
       <Button
         borderRadius="1.75rem"
-        className="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800"
-        onClick={setCopied}
+        className=" dark:bg-red-600 text-black dark:text-white border-neutral-200 dark:border-slate-800"
+        onClick={resetTranscript}
       >
-        COPY {isCopied ? "Yes! 👍" : "Tap and Copy! 👎"}
+        RESET
       </Button>
     </div>
   );

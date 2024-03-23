@@ -10,8 +10,19 @@ export async function POST(request) {
   const all = await request.json();
   console.log(all);
   console.log(all.UserName, all.Password, all.Email);
-
+  if (all.UserId === '' || all.UserName === '' || all.Password === '') {
+    return NextResponse.json({
+      Error: 'Error in saving the Data',
+    });
+  }
+  var CheckId = await User.findOne({ UserId: all.UserId });
+  if (CheckId) {
+    return NextResponse.json({
+      User: 'User Already Exists !!!',
+    });
+  }
   const newUser = await new User({
+    UserId: all.UserId,
     UserName: all.UserName,
     Password: all.Password,
     Email: all.Email,
@@ -25,7 +36,7 @@ export async function POST(request) {
 
     var resp = NextResponse.json({
       created,
-      message: 'dynamic get method',
+      message: 'DATA IS SAVED !',
       status: 201,
     });
     console.log('try5');
@@ -34,7 +45,7 @@ export async function POST(request) {
   } catch (error) {
     console.log(error);
     return NextResponse.json({
-      Error: 'while saving',
+      UncaughtError: 'Error',
     });
   }
 }
