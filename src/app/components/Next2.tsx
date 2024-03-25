@@ -43,8 +43,8 @@ function Next2() {
   <textarea
           style={{ resize: 'both' }}
           className="w-full md:w-4/6 lg:w-[45vw] h-40 md:h-60 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 focus:outline-none text-white"
-          // onChange={(e) => setTextValue(e.target.value)}
-          onClick={handleChange}
+          onChange={(e) => setTextValue(e.target.value)}
+          // onClick={handleChange}
           value={textValue}
 
           // placeholder='Sing here ...'
@@ -58,11 +58,11 @@ function Next2() {
   {/* <p className='text-red-300'>hiiii</p> */}
 
   {/* </textarea> */}
-  <textarea  
+  {/* <textarea  
   value={textValue}
   
   onClick={handleChange}
-  />
+  /> */}
  
  
 </div>
@@ -79,7 +79,7 @@ function Next2() {
           <Button2/>
           </div>
           <div>
-            {/* <Button3/>  */}
+            <Button3/> 
             </div>
           <div>
           <button className='bg-black p-3 m-3 rounded-md text-white' onClick={setCopied}>COPY {isCopied ? "Yes! 👍" : "Tap and Copy! 👎"}</button>
