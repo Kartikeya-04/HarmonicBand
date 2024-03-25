@@ -25,9 +25,7 @@ function Next2() {
 
   };
 
-  // useEffect(() => {
-  //   setTextValue(transcript);
-  // }, [transcript]);
+  
 
   console.log(transcript !== undefined ? 'Value is ' + transcript : 'Value is undefined');
 
@@ -43,11 +41,10 @@ function Next2() {
   <textarea
           style={{ resize: 'both' }}
           className="w-full md:w-4/6 lg:w-[45vw] h-40 md:h-60 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 focus:outline-none text-white"
-          onChange={(e) => setTextValue(e.target.value)}
-          // onClick={handleChange}
+          // onChange={(e) => setTextValue(e.target.value)}
+          onChange={handleChange}
           value={transcript}
-
-          // placeholder='Sing here ...'
+          placeholder='Speak here ...'
          
        />
        {/* <div
@@ -76,11 +73,9 @@ function Next2() {
  
 </div>
           
-      <div className="flex justify-center items-center space-x-4 flex-shrink buttonHolder">
+      <div className="flex justify-center items-center flex-shrink buttonHolder">
 
           <div>
-            
-      
           <Button/>
           </div>
           <div>
@@ -94,6 +89,12 @@ function Next2() {
           <button className='bg-black p-3 m-3 rounded-md text-white' onClick={setCopied}>COPY {isCopied ? "Yes! 👍" : "Tap and Copy! 👎"}</button>
 
           </div>
+
+<div>
+  
+  </div>
+
+
         </div>
     </div>
   )
