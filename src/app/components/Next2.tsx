@@ -50,6 +50,13 @@ function Next2() {
           // placeholder='Sing here ...'
          
        />
+       <div className='bg-yellow-400 text-amber-900' 
+       
+       
+          onClick={handleChange}
+          >
+        <p>{transcript}</p>
+       </div>
 
 
   {/* {transcript && (
