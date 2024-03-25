@@ -56,6 +56,14 @@ function Next2() {
 
 
   </textarea>
+  <textarea  
+  
+  
+  onClick={handleChange}
+  >
+  <p>{transcript}</p>
+
+  </textarea>
  
 </div>
           
