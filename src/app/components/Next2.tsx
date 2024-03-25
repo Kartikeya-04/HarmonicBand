@@ -41,39 +41,20 @@ function Next2() {
   <textarea
           style={{ resize: 'both' }}
           className="w-full md:w-4/6 lg:w-[45vw] h-40 md:h-60 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 focus:outline-none text-white"
-          // onChange={(e) => setTextValue(e.target.value)}
-          onChange={handleChange}
+          onClick={handleChange}
           value={transcript}
-          placeholder='Speak here ...'
+          placeholder='Sing here ...  and Tap to Copy !'
          
        />
-       {/* <div
-       
-       className="w-full md:w-4/6 lg:w-[45vw] h-40 md:h-60 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 focus:outline-none text-white"
       
-       
-          onClick={handleChange}
-          >
-        <p>{transcript}</p>
-       </div> */}
 
 
-  {/* {transcript && (
-    <p>{typeof transcript === 'object' ? JSON.stringify(transcript) : transcript}</p>
-  )} */}
-  {/* <p className='text-red-300'>hiiii</p> */}
-
-  {/* </textarea> */}
-  {/* <textarea  
-  value={textValue}
-  
-  onClick={handleChange}
-  /> */}
+ 
  
  
 </div>
           
-      <div className="flex justify-center items-center flex-shrink buttonHolder">
+      <div className="flex justify-center items-center flex-shrink buttonHolder gap-2">
 
           <div>
           <Button/>
@@ -86,7 +67,7 @@ function Next2() {
             <Button3/> 
             </div>
           <div>
-          <button className='bg-black p-3 m-3 rounded-md text-white' onClick={setCopied}>COPY {isCopied ? "Yes! 👍" : "Tap and Copy! 👎"}</button>
+          <button className='bg-black p-3 m-3 rounded-md text-white' onClick={setCopied}>{isCopied ? "Again Copy 👍" : "Tap and Copy! 👎"}</button>
 
           </div>
 
