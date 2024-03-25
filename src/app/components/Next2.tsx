@@ -25,7 +25,9 @@ function Next2() {
 
   };
 
-  
+  // useEffect(() => {
+  //   setTextValue(transcript);
+  // }, [transcript]);
 
   console.log(transcript !== undefined ? 'Value is ' + transcript : 'Value is undefined');
 
@@ -43,27 +45,25 @@ function Next2() {
           className="w-full md:w-4/6 lg:w-[45vw] h-40 md:h-60 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 focus:outline-none text-white"
           // onChange={(e) => setTextValue(e.target.value)}
           onClick={handleChange}
+          value={textValue}
 
           // placeholder='Sing here ...'
          
-        >
+       />
 
 
   {/* {transcript && (
     <p>{typeof transcript === 'object' ? JSON.stringify(transcript) : transcript}</p>
   )} */}
-  <p>{transcript}</p>
+  {/* <p className='text-red-300'>hiiii</p> */}
 
-
-  </textarea>
+  {/* </textarea> */}
   <textarea  
-  
+  value={textValue}
   
   onClick={handleChange}
-  >
-  <p>{transcript}</p>
-
-  </textarea>
+  />
+ 
  
 </div>
           
