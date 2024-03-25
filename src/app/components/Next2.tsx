@@ -45,18 +45,20 @@ function Next2() {
           className="w-full md:w-4/6 lg:w-[45vw] h-40 md:h-60 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 focus:outline-none text-white"
           onChange={(e) => setTextValue(e.target.value)}
           // onClick={handleChange}
-          value={textValue}
+          value={transcript}
 
           // placeholder='Sing here ...'
          
        />
-       <div className='bg-yellow-400 text-amber-900' 
+       {/* <div
        
+       className="w-full md:w-4/6 lg:w-[45vw] h-40 md:h-60 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 focus:outline-none text-white"
+      
        
           onClick={handleChange}
           >
         <p>{transcript}</p>
-       </div>
+       </div> */}
 
 
   {/* {transcript && (
