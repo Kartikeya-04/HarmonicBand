@@ -24,15 +24,7 @@ function Next2() {
     setTextValue(transcript);
 
   };
-  // const start=()=>{SpeechRecognition.startListening({continuous:true},{ language: 'en-IN' });}
-  const start = () => {
-    if (browserSupportsSpeechRecognition) {
-      SpeechRecognition.startListening({ continuous: true, language: 'en-IN' });
-      console.log('working');
-    } else { 
-      console.error("Speech recognition is not supported in this browser.");
-    }
-  }
+
   
 
   console.log(transcript !== undefined ? 'Value is ' + transcript : 'Value is undefined');
@@ -44,29 +36,28 @@ function Next2() {
     SING YOUR SONG HERE !
 </div>
 <div className='m-9' 
+
 >
   <textarea
           style={{ resize: 'both' }}
           className="w-full md:w-4/6 lg:w-[45vw] h-40 md:h-60 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 focus:outline-none text-white"
           onChange={(e) => setTextValue(e.target.value)}
+          // onClick={(e) => setTextValue(e.target.value)}
+
           placeholder='Sing here ...'
-          // value={transcript}
-          // readOnly
+         
         >
 
 
-  {transcript && (
+  {/* {transcript && (
     <p>{typeof transcript === 'object' ? JSON.stringify(transcript) : transcript}</p>
-  )}
+  )} */}
+  <p>{transcript}</p>
 
 
   </textarea>
-  {/* <div onClick={()=>setTextValue(transcript)} className='bg-white m-12 w-'>
-  <p>{transcript}.</p>
-
-  </div> */}
+ 
 </div>
-      {/* <div className="flex flex-row justify-center items-center space-x-4 flex-shrink md:flex-col md:m-1 sm:flex-col sm:m-2"> */}
           
       <div className="flex justify-center items-center space-x-4 flex-shrink buttonHolder">
 
