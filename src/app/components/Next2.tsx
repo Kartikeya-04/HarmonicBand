@@ -44,7 +44,7 @@ function Next2() {
           onChange={(e) => setTextValue(e.target.value)}
           // onClick={(e) => setTextValue(e.target.value)}
 
-          placeholder='Sing here ...'
+          // placeholder='Sing here ...'
          
         >
 
@@ -71,7 +71,7 @@ function Next2() {
           <Button2/>
           </div>
           <div>
-            <Button3/> 
+            {/* <Button3/>  */}
             </div>
           <div>
           <button className='bg-black p-3 m-3 rounded-md text-white' onClick={setCopied}>COPY {isCopied ? "Yes! 👍" : "Tap and Copy! 👎"}</button>
