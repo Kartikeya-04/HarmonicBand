@@ -67,7 +67,7 @@ function Next2() {
             <Button3/> 
             </div>
           <div>
-          <button className='bg-black p-3 m-3 rounded-md text-white' onClick={setCopied}>{isCopied ? "Again Copy 👍" : "Tap and Copy! 👎"}</button>
+          <button className='bg-black p-3 m-3 rounded-md text-white' onClick={setCopied}>{isCopied ? "Copy Again👍" : "Tap and Copy! "}</button>
 
           </div>
 
