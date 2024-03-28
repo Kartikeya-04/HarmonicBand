@@ -10,26 +10,28 @@ import { cn } from "@/app/utils/cn";
 
 export default function BackgroundBoxesDemo() {
 
-    // function playRandomSound() {
-    //     const sounds = [
-    //       sound1,
-    //       sound2,
-    //       sound3,
-    //       sound4,
-    //       sound5,
-    //     ];
-      
-    //     const randomIndex = Math.floor(Math.random() * sounds.length);
-      
-    //     const audio = new Audio(sounds[randomIndex]);
-      
-    //     audio.play();
-    //   }
+  function playRandomSound() {
+    const sounds = [
+      'sounds/drum.wav',
+      'sounds/flute1.wav',
+      'sounds/guitar1.wav',
+      'sounds/crash.mp3',
+      'sounds/snare.mp3',
+      'sounds/tom-1.mp3',
+
+    ];
+  
+    const randomIndex = Math.floor(Math.random() * sounds.length);
+  
+    const audio = new Audio(sounds[randomIndex]);
+  
+    audio.play();
+  }
 
 
   return (
-    <div className="h-screen relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
-      <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+    <div className="h-screen relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg" onClick={playRandomSound}>
+      <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none"/>
 
       <Boxes />
       <h1 className={cn("md:text-4xl text-xl text-white relative z-20")}>

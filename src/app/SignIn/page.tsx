@@ -95,13 +95,17 @@ toast.success("User's Data Is Saved",{
             </h1>
           </div>
           <br />
+          <div className='font-extrabold text-2xl'>Now You Can Access The Songs Page To Make Your Own Lyrics !!!!</div>
+
           <div>THANK YOU FOR JOINING US 💛 !!!!</div>
+
           <div>
             {' '}
             <button className="signOut" onClick={handleSignOut}>
               Sign out
             </button>{' '}
           </div>
+
         </div>
       
       ) : (
