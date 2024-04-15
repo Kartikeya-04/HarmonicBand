@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt'
 const newSchema = new mongoose.Schema({
   UserId:{
     type:Number,
-    required:true,
-    unique:true
+    required:false,
+    default:0
   },
   UserName: {
     type:String,
@@ -12,30 +12,46 @@ const newSchema = new mongoose.Schema({
   },
   Password: {
     type:String,
-    required:true
+    required:false,
+
+    default: 'defaultPassword'
   },
-  Email: String,
+  Email:{
+    type:String,
+    // unique:true
+  },
+  Feedback:  {type:String
+  },
+  timestamp:{
+    type:Date,
+    default: Date.now
+  }
 });
 
+
 newSchema.pre('save', async function(next) {
-  // Only hash the password if it's modified or new
-  if (!this.isModified('Password')) {
-    return next();
+  if(this.Password){
+    if (!this.isModified('Password')) {
+      return next();
+    }
+    try {
+      const salt = await bcrypt.genSalt(10);
+  
+      const hashedPassword = await bcrypt.hash(this.Password, salt);
+  
+      this.Password = hashedPassword;
+  
+     return next();
+    } catch (error:any) {
+     return next(error);
+    }
+
+  }
+  else{
+    console.log('pre conditioning condition is checked ! ');
+    return
+    
   }
 
-  try {
-    // Generate a salt
-    const salt = await bcrypt.genSalt(10);
-
-    // Hash the password along with the salt
-    const hashedPassword = await bcrypt.hash(this.Password, salt);
-
-    // Replace the plain text password with the hashed password
-    this.Password = hashedPassword;
-
-    next();
-  } catch (error:any) {
-    next(error);
-  }
 });
 export const User = mongoose.models.User || mongoose.model('User', newSchema);

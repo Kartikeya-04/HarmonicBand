@@ -30,7 +30,8 @@
     "react-toastify": "^10.0.5",
     "react-use-clipboard": "^1.0.9",
     "simplex-noise": "^4.0.1",
-    "tailwind-merge": "^2.2.1"
+    "tailwind-merge": "^2.2.1",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -7,18 +7,12 @@ import Next3 from '../components/Next3'
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-
 function Page() {
   const router = useRouter();
-  useEffect(() => {
-    const checkAuth = async () => {
-      const session = await getSession();
-      if (!session) {
-        router.push('/SignIn'); // Redirect to login page if user is not authenticated
-      }
-    };
-    checkAuth();
-  }, []);
+ 
+
+
+
   return (
     <div className='h-screen w-screen dark'>
         <Navbar/>  

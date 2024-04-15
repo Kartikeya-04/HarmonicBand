@@ -1,12 +1,34 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import '../components/App.css';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 function Page() {
+  useEffect(() => {
+    const webchatScript = document.createElement('script');
+    webchatScript.src = 'https://cdn.botpress.cloud/webchat/v1/inject.js';
+    webchatScript.defer = true;
+  
+    document.body.appendChild(webchatScript);
+
+    const configScript = document.createElement('script');
+    configScript.async = true;
+
+    configScript.src =
+      'https://mediafiles.botpress.cloud/0f4d808f-f0ed-4ee3-a448-9d4b9539426f/webchat/config.js';
+    configScript.defer = true;
+
+    document.body.appendChild(configScript);
+
+    return () => {
+      document.body.removeChild(configScript);
+    };
+  }, []);
+  const router=useRouter()
   const [first, setFirst] = useState({
     UserId: '',
     UserName: '',
@@ -14,9 +36,12 @@ function Page() {
     Email: '',
   });
   const [visible, setVisible] = useState(false);
+  const [myfeed, setmyfeed] = useState('')
 
   const Submission = async () => {
     try {
+
+     
       var resp = await axios.post('/pages/regi', first);
       console.log(resp.data);
 
@@ -42,6 +67,34 @@ toast.success("User's Data Is Saved",{
       console.log(error);
     }
   };
+
+
+  const feed_submission=async()=>{
+    try {
+
+      if(session?.user?.email){
+        var resp = await axios.post('/pages/regi',{UserName:session.user.name,Email:session.user.email,Feedback:myfeed});
+        console.log("response received on frontend by auth",resp.data)
+      setmyfeed('')
+      toast.success("Feedback is submitted ! Thank You 🎵",{
+        position:'top-center',
+      })
+       return;
+        }
+      console.log('user id is',first.UserId);
+      console.log('is',myfeed);
+      
+      const  feeds=await axios.post('/pages/regi',{Email:first.Email,Feedback:myfeed})
+      console.log('my feed',feeds);
+      setmyfeed('')
+      toast.success("Feedback is submitted ! Thank You 🎵",{
+        position:'top-center',
+      })
+    } catch (error) {
+      console.log('error in feedback ',error);
+      
+    }
+  }
 
   const { data: session } = useSession();
   console.log(session);
@@ -74,34 +127,58 @@ toast.success("User's Data Is Saved",{
   };
 
   return (
-    <div>
+    <div className='h-screen overflow-scroll'>
       {session || visible ? (
         // <div>
         //   <Navbar/>
         <div className="w-screen h-screen flex flex-col justify-center items-center gap-4 entered relative">
                <div className='absolute left-0 top-1 m-2'>
      
-     <Link href='/' >
-     <h2> Back </h2>
-     </Link>
+     
+     <button
+  className="hover:text-green-600 backdrop-blur-lg bg-gradient-to-tr from-transparent via-[rgba(121,121,121,0.16)] to-transparent rounded-md py-2 px-6 shadow hover:shadow-green-600 duration-700 text-white"
+  onClick={()=>router.replace('/')}
+>
+  BACK
+</button>
+
      
       </div>
           <div className="m-4 text-4xl font-bold">
             <h1>
               Signed In as{' '}
               <span className="text-blue-700 font-extrabold">
-                {session?.user?.email ? session.user.email : first.UserName}
+                {session?.user?.email ? session.user.name : first.UserName}
               </span>
             </h1>
           </div>
           <br />
-          <div className='font-extrabold text-2xl'>Now You Can Access The Songs Page To Make Your Own Lyrics !!!!</div>
+          {/* <div className='font-extrabold text-2xl'>Now You Can Access The Songs Page To Make Your Own Lyrics !!!!</div> */}
 
           <div>THANK YOU FOR JOINING US 💛 !!!!</div>
-
+          <div>FEEDBACK IS GIVEN BELOW </div>
           <div>
+            
+            <textarea rows={8} cols={55} className='textInput bg-blue-300' 
+            onChange={(e:any) => { setmyfeed(e.target.value) }}
+
+
+            />
+            </div>
+            <div>
+            {/* <button >Submit Your Feedback</button> */}
+            <button onClick={feed_submission}>
+  <span className="transition"></span>
+  <span className="gradient"></span>
+  <span className="label">Submit FeedBack</span>
+</button>
+
+
+            </div>
+
+          <div className='w-1/4 m-8'>
             {' '}
-            <button className="signOut" onClick={handleSignOut}>
+            <button className="signOut w-full text-black" onClick={handleSignOut}>
               Sign out
             </button>{' '}
           </div>
@@ -112,11 +189,16 @@ toast.success("User's Data Is Saved",{
  
 
         <div className="signin w-screen h-auto flex flex-col justify-center items-center gap-3 relative">
-          <div className='absolute left-0 top-1 m-2'>
+           <div className='absolute left-0 top-1 m-2'>
      
-     <Link href='/' >
-       <h2 className='text-2xl font-semibold'> Back </h2>
-     </Link>
+     
+     <button
+  className="hover:text-green-600 backdrop-blur-lg bg-gradient-to-tr from-transparent via-[rgba(121,121,121,0.16)] to-transparent rounded-md py-2 px-6 shadow hover:shadow-green-600 duration-700 text-white"
+  onClick={()=>router.replace('/')}
+>
+  BACK
+</button>
+
      
       </div>
           <div className="m-4 text-7xl font-bold signinHeader">
@@ -158,7 +240,7 @@ toast.success("User's Data Is Saved",{
           <div>
             <button
               onClick={Submission}
-              className="inline-flex cursor-pointer items-center gap-1 rounded border border-slate-300 bg-gradient-to-b from-slate-50 to-slate-200 px-4 py-2 font-semibold hover:opacity-90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-2 active:opacity-100 shadow-custom m-4"
+              className="inline-flex cursor-pointer items-center gap-1 rounded border border-slate-300 bg-gradient-to-b from-slate-50 to-slate-200 px-4 py-2 font-semibold hover:opacity-90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-2 active:opacity-100 shadow-custom m-4 text-black"
             >
               SUBMIT
             </button>
